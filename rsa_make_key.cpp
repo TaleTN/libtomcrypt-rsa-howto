@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 	if (err != CRYPT_OK) return error(err);
 
 	// Export private key.
-	unsigned char out[1200];
+	unsigned char out[bitsize * 5 / 8]; // guesstimate
 	unsigned long outlen = sizeof(out);
 	err = rsa_export(out, &outlen, PK_PRIVATE, &key);
 	if (err != CRYPT_OK) return error(err, &key);
