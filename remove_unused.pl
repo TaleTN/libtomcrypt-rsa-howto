@@ -1,4 +1,4 @@
-#!perl
+#!/usr/bin/perl
 
 # Copyright (C) 2015 Theo Niessink <theo@taletn.com>
 # This work is free. You can redistribute it and/or modify it under the
