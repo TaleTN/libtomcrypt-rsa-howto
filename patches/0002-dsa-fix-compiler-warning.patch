@@ -1,0 +1,24 @@
+From 5a500ab49a66d3d17c6940c82f63dcd3143ee5cf Mon Sep 17 00:00:00 2001
+From: Steffen Jaeckel <steffen.jaeckel@stzedn.de>
+Date: Fri, 22 Mar 2013 13:42:06 +0200
+Subject: [PATCH 2/3] dsa: fix compiler warning
+
+---
+ libtomcrypt/src/pk/dsa/dsa_export.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/libtomcrypt/src/pk/dsa/dsa_export.c b/libtomcrypt/src/pk/dsa/dsa_export.c
+index 582e63b..7bb3558 100644
+--- a/libtomcrypt/src/pk/dsa/dsa_export.c
++++ b/libtomcrypt/src/pk/dsa/dsa_export.c
+@@ -27,7 +27,6 @@
+ */
+ int dsa_export(unsigned char *out, unsigned long *outlen, int type, dsa_key *key)
+ {
+-   unsigned char flags[1];
+    unsigned long zero=0;
+    int err;
+ 
+-- 
+1.9.5.msysgit.0
+

@@ -1,0 +1,673 @@
+# Copyright (C) 2015 Theo Niessink <theo@taletn.com>
+# This work is free. You can redistribute it and/or modify it under the
+# terms of the Do What The Fuck You Want To Public License, Version 2,
+# as published by Sam Hocevar. See the LICENSE file for more details.
+
+CFLAGS = /O2 /GS- /GR- /DNDEBUG /DWIN32 /D_CRT_SECURE_NO_WARNINGS /W3
+
+LTM_LIBNAME = libtommath/tommath.lib
+
+LTM_OBJECTS = \
+libtommath/bncore.obj \
+libtommath/bn_mp_init.obj \
+libtommath/bn_mp_clear.obj \
+libtommath/bn_mp_exch.obj \
+libtommath/bn_mp_grow.obj \
+#libtommath/bn_mp_shrink.obj \
+libtommath/bn_mp_clamp.obj \
+libtommath/bn_mp_zero.obj \
+libtommath/bn_mp_set.obj \
+libtommath/bn_mp_set_int.obj \
+libtommath/bn_mp_init_size.obj \
+libtommath/bn_mp_copy.obj \
+libtommath/bn_mp_init_copy.obj \
+libtommath/bn_mp_abs.obj \
+libtommath/bn_mp_neg.obj \
+libtommath/bn_mp_cmp_mag.obj \
+libtommath/bn_mp_cmp.obj \
+libtommath/bn_mp_cmp_d.obj \
+libtommath/bn_mp_rshd.obj \
+libtommath/bn_mp_lshd.obj \
+libtommath/bn_mp_mod_2d.obj \
+libtommath/bn_mp_div_2d.obj \
+libtommath/bn_mp_mul_2d.obj \
+libtommath/bn_mp_div_2.obj \
+libtommath/bn_mp_mul_2.obj \
+libtommath/bn_s_mp_add.obj \
+libtommath/bn_s_mp_sub.obj \
+libtommath/bn_fast_s_mp_mul_digs.obj \
+libtommath/bn_s_mp_mul_digs.obj \
+libtommath/bn_fast_s_mp_mul_high_digs.obj \
+libtommath/bn_s_mp_mul_high_digs.obj \
+libtommath/bn_fast_s_mp_sqr.obj \
+libtommath/bn_s_mp_sqr.obj \
+libtommath/bn_mp_add.obj \
+libtommath/bn_mp_sub.obj \
+libtommath/bn_mp_karatsuba_mul.obj \
+libtommath/bn_mp_mul.obj \
+libtommath/bn_mp_karatsuba_sqr.obj \
+libtommath/bn_mp_sqr.obj \
+libtommath/bn_mp_div.obj \
+libtommath/bn_mp_mod.obj \
+libtommath/bn_mp_add_d.obj \
+libtommath/bn_mp_sub_d.obj \
+libtommath/bn_mp_mul_d.obj \
+libtommath/bn_mp_div_d.obj \
+libtommath/bn_mp_mod_d.obj \
+#libtommath/bn_mp_expt_d.obj \
+libtommath/bn_mp_addmod.obj \
+libtommath/bn_mp_submod.obj \
+libtommath/bn_mp_mulmod.obj \
+libtommath/bn_mp_sqrmod.obj \
+libtommath/bn_mp_gcd.obj \
+libtommath/bn_mp_lcm.obj \
+libtommath/bn_fast_mp_invmod.obj \
+libtommath/bn_mp_invmod.obj \
+libtommath/bn_mp_reduce.obj \
+libtommath/bn_mp_montgomery_setup.obj \
+libtommath/bn_fast_mp_montgomery_reduce.obj \
+libtommath/bn_mp_montgomery_reduce.obj \
+libtommath/bn_mp_exptmod_fast.obj \
+libtommath/bn_mp_exptmod.obj \
+libtommath/bn_mp_2expt.obj \
+#libtommath/bn_mp_n_root.obj \
+#libtommath/bn_mp_jacobi.obj \
+libtommath/bn_reverse.obj \
+libtommath/bn_mp_count_bits.obj \
+libtommath/bn_mp_read_unsigned_bin.obj \
+#libtommath/bn_mp_read_signed_bin.obj \
+libtommath/bn_mp_to_unsigned_bin.obj \
+#libtommath/bn_mp_to_signed_bin.obj \
+libtommath/bn_mp_unsigned_bin_size.obj \
+#libtommath/bn_mp_signed_bin_size.obj \
+#libtommath/bn_mp_xor.obj \
+#libtommath/bn_mp_and.obj \
+#libtommath/bn_mp_or.obj \
+libtommath/bn_mp_rand.obj \
+libtommath/bn_mp_montgomery_calc_normalization.obj \
+libtommath/bn_mp_prime_is_divisible.obj \
+libtommath/bn_prime_tab.obj \
+#libtommath/bn_mp_prime_fermat.obj \
+libtommath/bn_mp_prime_miller_rabin.obj \
+libtommath/bn_mp_prime_is_prime.obj \
+#libtommath/bn_mp_prime_next_prime.obj \
+libtommath/bn_mp_dr_reduce.obj \
+libtommath/bn_mp_dr_is_modulus.obj \
+libtommath/bn_mp_dr_setup.obj \
+libtommath/bn_mp_reduce_setup.obj \
+libtommath/bn_mp_toom_mul.obj \
+libtommath/bn_mp_toom_sqr.obj \
+libtommath/bn_mp_div_3.obj \
+libtommath/bn_s_mp_exptmod.obj \
+libtommath/bn_mp_reduce_2k.obj \
+libtommath/bn_mp_reduce_is_2k.obj \
+libtommath/bn_mp_reduce_2k_setup.obj \
+libtommath/bn_mp_reduce_2k_l.obj \
+libtommath/bn_mp_reduce_is_2k_l.obj \
+libtommath/bn_mp_reduce_2k_setup_l.obj \
+libtommath/bn_mp_radix_smap.obj \
+libtommath/bn_mp_read_radix.obj \
+libtommath/bn_mp_toradix.obj \
+#libtommath/bn_mp_radix_size.obj \
+#libtommath/bn_mp_fread.obj \
+#libtommath/bn_mp_fwrite.obj \
+libtommath/bn_mp_cnt_lsb.obj \
+#libtommath/bn_error.obj \
+libtommath/bn_mp_init_multi.obj \
+libtommath/bn_mp_clear_multi.obj \
+#libtommath/bn_mp_exteuclid.obj \
+#libtommath/bn_mp_toradix_n.obj \
+#libtommath/bn_mp_prime_random_ex.obj \
+libtommath/bn_mp_get_int.obj \
+#libtommath/bn_mp_sqrt.obj \
+#libtommath/bn_mp_is_square.obj \
+#libtommath/bn_mp_init_set.obj \
+#libtommath/bn_mp_init_set_int.obj \
+libtommath/bn_mp_invmod_slow.obj \
+#libtommath/bn_mp_prime_rabin_miller_trials.obj \
+#libtommath/bn_mp_to_signed_bin_n.obj \
+#libtommath/bn_mp_to_unsigned_bin_n.obj"
+
+LTM_HEADERS = \
+libtommath/tommath.h \
+libtommath/tommath_class.h \
+libtommath/tommath_superclass.h
+
+LTC_LIBNAME = libtomcrypt/tomcrypt.lib
+
+LTC_OBJECTS = \
+#libtomcrypt/src/ciphers/aes/aes_enc.obj \
+#libtomcrypt/src/ciphers/aes/aes.obj \
+#libtomcrypt/src/ciphers/anubis.obj \
+#libtomcrypt/src/ciphers/blowfish.obj \
+#libtomcrypt/src/ciphers/camellia.obj \
+#libtomcrypt/src/ciphers/cast5.obj \
+#libtomcrypt/src/ciphers/des.obj \
+#libtomcrypt/src/ciphers/kasumi.obj \
+#libtomcrypt/src/ciphers/khazad.obj \
+#libtomcrypt/src/ciphers/kseed.obj \
+#libtomcrypt/src/ciphers/multi2.obj \
+#libtomcrypt/src/ciphers/noekeon.obj \
+#libtomcrypt/src/ciphers/rc2.obj \
+#libtomcrypt/src/ciphers/rc5.obj \
+#libtomcrypt/src/ciphers/rc6.obj \
+#libtomcrypt/src/ciphers/safer/safer.obj \
+#libtomcrypt/src/ciphers/safer/saferp.obj \
+#libtomcrypt/src/ciphers/safer/safer_tab.obj \
+#libtomcrypt/src/ciphers/skipjack.obj \
+#libtomcrypt/src/ciphers/twofish/twofish.obj \
+#libtomcrypt/src/ciphers/xtea.obj \
+#libtomcrypt/src/encauth/ccm/ccm_memory.obj \
+#libtomcrypt/src/encauth/ccm/ccm_memory_ex.obj \
+#libtomcrypt/src/encauth/ccm/ccm_test.obj \
+#libtomcrypt/src/encauth/eax/eax_addheader.obj \
+#libtomcrypt/src/encauth/eax/eax_decrypt.obj \
+#libtomcrypt/src/encauth/eax/eax_decrypt_verify_memory.obj \
+#libtomcrypt/src/encauth/eax/eax_done.obj \
+#libtomcrypt/src/encauth/eax/eax_encrypt_authenticate_memory.obj \
+#libtomcrypt/src/encauth/eax/eax_encrypt.obj \
+#libtomcrypt/src/encauth/eax/eax_init.obj \
+#libtomcrypt/src/encauth/eax/eax_test.obj \
+#libtomcrypt/src/encauth/gcm/gcm_add_aad.obj \
+#libtomcrypt/src/encauth/gcm/gcm_add_iv.obj \
+#libtomcrypt/src/encauth/gcm/gcm_done.obj \
+#libtomcrypt/src/encauth/gcm/gcm_gf_mult.obj \
+#libtomcrypt/src/encauth/gcm/gcm_init.obj \
+#libtomcrypt/src/encauth/gcm/gcm_memory.obj \
+#libtomcrypt/src/encauth/gcm/gcm_mult_h.obj \
+#libtomcrypt/src/encauth/gcm/gcm_process.obj \
+#libtomcrypt/src/encauth/gcm/gcm_reset.obj \
+#libtomcrypt/src/encauth/gcm/gcm_test.obj \
+#libtomcrypt/src/encauth/ocb/ocb_decrypt.obj \
+#libtomcrypt/src/encauth/ocb/ocb_decrypt_verify_memory.obj \
+#libtomcrypt/src/encauth/ocb/ocb_done_decrypt.obj \
+#libtomcrypt/src/encauth/ocb/ocb_done_encrypt.obj \
+#libtomcrypt/src/encauth/ocb/ocb_encrypt_authenticate_memory.obj \
+#libtomcrypt/src/encauth/ocb/ocb_encrypt.obj \
+#libtomcrypt/src/encauth/ocb/ocb_init.obj \
+#libtomcrypt/src/encauth/ocb/ocb_ntz.obj \
+#libtomcrypt/src/encauth/ocb/ocb_shift_xor.obj \
+#libtomcrypt/src/encauth/ocb/ocb_test.obj \
+#libtomcrypt/src/encauth/ocb/s_ocb_done.obj \
+#libtomcrypt/src/hashes/chc/chc.obj \
+#libtomcrypt/src/hashes/helper/hash_file.obj \
+#libtomcrypt/src/hashes/helper/hash_filehandle.obj \
+#libtomcrypt/src/hashes/helper/hash_memory.obj \
+#libtomcrypt/src/hashes/helper/hash_memory_multi.obj \
+libtomcrypt/src/hashes/md2.obj \
+#libtomcrypt/src/hashes/md4.obj \
+libtomcrypt/src/hashes/md5.obj \
+#libtomcrypt/src/hashes/rmd128.obj \
+#libtomcrypt/src/hashes/rmd160.obj \
+#libtomcrypt/src/hashes/rmd256.obj \
+#libtomcrypt/src/hashes/rmd320.obj \
+libtomcrypt/src/hashes/sha1.obj \
+libtomcrypt/src/hashes/sha2/sha256.obj \
+libtomcrypt/src/hashes/sha2/sha512.obj \
+#libtomcrypt/src/hashes/tiger.obj \
+#libtomcrypt/src/hashes/whirl/whirl.obj \
+#libtomcrypt/src/mac/f9/f9_done.obj \
+#libtomcrypt/src/mac/f9/f9_file.obj \
+#libtomcrypt/src/mac/f9/f9_init.obj \
+#libtomcrypt/src/mac/f9/f9_memory.obj \
+#libtomcrypt/src/mac/f9/f9_memory_multi.obj \
+#libtomcrypt/src/mac/f9/f9_process.obj \
+#libtomcrypt/src/mac/f9/f9_test.obj \
+#libtomcrypt/src/mac/hmac/hmac_done.obj \
+#libtomcrypt/src/mac/hmac/hmac_file.obj \
+#libtomcrypt/src/mac/hmac/hmac_init.obj \
+#libtomcrypt/src/mac/hmac/hmac_memory.obj \
+#libtomcrypt/src/mac/hmac/hmac_memory_multi.obj \
+#libtomcrypt/src/mac/hmac/hmac_process.obj \
+#libtomcrypt/src/mac/hmac/hmac_test.obj \
+#libtomcrypt/src/mac/omac/omac_done.obj \
+#libtomcrypt/src/mac/omac/omac_file.obj \
+#libtomcrypt/src/mac/omac/omac_init.obj \
+#libtomcrypt/src/mac/omac/omac_memory.obj \
+#libtomcrypt/src/mac/omac/omac_memory_multi.obj \
+#libtomcrypt/src/mac/omac/omac_process.obj \
+#libtomcrypt/src/mac/omac/omac_test.obj \
+#libtomcrypt/src/mac/pelican/pelican.obj \
+#libtomcrypt/src/mac/pelican/pelican_memory.obj \
+#libtomcrypt/src/mac/pelican/pelican_test.obj \
+#libtomcrypt/src/mac/pmac/pmac_done.obj \
+#libtomcrypt/src/mac/pmac/pmac_file.obj \
+#libtomcrypt/src/mac/pmac/pmac_init.obj \
+#libtomcrypt/src/mac/pmac/pmac_memory.obj \
+#libtomcrypt/src/mac/pmac/pmac_memory_multi.obj \
+#libtomcrypt/src/mac/pmac/pmac_ntz.obj \
+#libtomcrypt/src/mac/pmac/pmac_process.obj \
+#libtomcrypt/src/mac/pmac/pmac_shift_xor.obj \
+#libtomcrypt/src/mac/pmac/pmac_test.obj \
+#libtomcrypt/src/mac/xcbc/xcbc_done.obj \
+#libtomcrypt/src/mac/xcbc/xcbc_file.obj \
+#libtomcrypt/src/mac/xcbc/xcbc_init.obj \
+#libtomcrypt/src/mac/xcbc/xcbc_memory.obj \
+#libtomcrypt/src/mac/xcbc/xcbc_memory_multi.obj \
+#libtomcrypt/src/mac/xcbc/xcbc_process.obj \
+#libtomcrypt/src/mac/xcbc/xcbc_test.obj \
+#libtomcrypt/src/math/fp/ltc_ecc_fp_mulmod.obj \
+#libtomcrypt/src/math/gmp_desc.obj \
+libtomcrypt/src/math/ltm_desc.obj \
+libtomcrypt/src/math/multi.obj \
+libtomcrypt/src/math/rand_prime.obj \
+#libtomcrypt/src/math/tfm_desc.obj \
+libtomcrypt/src/misc/base64/base64_decode.obj \
+libtomcrypt/src/misc/base64/base64_encode.obj \
+#libtomcrypt/src/misc/burn_stack.obj \
+libtomcrypt/src/misc/crypt/crypt_argchk.obj \
+#libtomcrypt/src/misc/crypt/crypt.obj \
+#libtomcrypt/src/misc/crypt/crypt_cipher_descriptor.obj \
+#libtomcrypt/src/misc/crypt/crypt_cipher_is_valid.obj \
+#libtomcrypt/src/misc/crypt/crypt_find_cipher_any.obj \
+#libtomcrypt/src/misc/crypt/crypt_find_cipher.obj \
+#libtomcrypt/src/misc/crypt/crypt_find_cipher_id.obj \
+#libtomcrypt/src/misc/crypt/crypt_find_hash_any.obj \
+#libtomcrypt/src/misc/crypt/crypt_find_hash.obj \
+#libtomcrypt/src/misc/crypt/crypt_find_hash_id.obj \
+#libtomcrypt/src/misc/crypt/crypt_find_hash_oid.obj \
+#libtomcrypt/src/misc/crypt/crypt_find_prng.obj \
+#libtomcrypt/src/misc/crypt/crypt_fsa.obj \
+libtomcrypt/src/misc/crypt/crypt_hash_descriptor.obj \
+libtomcrypt/src/misc/crypt/crypt_hash_is_valid.obj \
+libtomcrypt/src/misc/crypt/crypt_ltc_mp_descriptor.obj \
+libtomcrypt/src/misc/crypt/crypt_prng_descriptor.obj \
+libtomcrypt/src/misc/crypt/crypt_prng_is_valid.obj \
+#libtomcrypt/src/misc/crypt/crypt_register_cipher.obj \
+libtomcrypt/src/misc/crypt/crypt_register_hash.obj \
+libtomcrypt/src/misc/crypt/crypt_register_prng.obj \
+#libtomcrypt/src/misc/crypt/crypt_unregister_cipher.obj \
+#libtomcrypt/src/misc/crypt/crypt_unregister_hash.obj \
+#libtomcrypt/src/misc/crypt/crypt_unregister_prng.obj \
+libtomcrypt/src/misc/error_to_string.obj \
+#libtomcrypt/src/misc/pkcs5/pkcs_5_1.obj \
+libtomcrypt/src/misc/pk_get_oid.obj \
+#libtomcrypt/src/misc/pkcs5/pkcs_5_2.obj \
+libtomcrypt/src/misc/zeromem.obj \
+#libtomcrypt/src/modes/cbc/cbc_decrypt.obj \
+#libtomcrypt/src/modes/cbc/cbc_done.obj \
+#libtomcrypt/src/modes/cbc/cbc_encrypt.obj \
+#libtomcrypt/src/modes/cbc/cbc_getiv.obj \
+#libtomcrypt/src/modes/cbc/cbc_setiv.obj \
+#libtomcrypt/src/modes/cbc/cbc_start.obj \
+#libtomcrypt/src/modes/cfb/cfb_decrypt.obj \
+#libtomcrypt/src/modes/cfb/cfb_done.obj \
+#libtomcrypt/src/modes/cfb/cfb_encrypt.obj \
+#libtomcrypt/src/modes/cfb/cfb_getiv.obj \
+#libtomcrypt/src/modes/cfb/cfb_setiv.obj \
+#libtomcrypt/src/modes/cfb/cfb_start.obj \
+#libtomcrypt/src/modes/ctr/ctr_decrypt.obj \
+#libtomcrypt/src/modes/ctr/ctr_done.obj \
+#libtomcrypt/src/modes/ctr/ctr_encrypt.obj \
+#libtomcrypt/src/modes/ctr/ctr_getiv.obj \
+#libtomcrypt/src/modes/ctr/ctr_setiv.obj \
+#libtomcrypt/src/modes/ctr/ctr_start.obj \
+#libtomcrypt/src/modes/ctr/ctr_test.obj \
+#libtomcrypt/src/modes/ecb/ecb_decrypt.obj \
+#libtomcrypt/src/modes/ecb/ecb_done.obj \
+#libtomcrypt/src/modes/ecb/ecb_encrypt.obj \
+#libtomcrypt/src/modes/ecb/ecb_start.obj \
+#libtomcrypt/src/modes/f8/f8_decrypt.obj \
+#libtomcrypt/src/modes/f8/f8_done.obj \
+#libtomcrypt/src/modes/f8/f8_encrypt.obj \
+#libtomcrypt/src/modes/f8/f8_getiv.obj \
+#libtomcrypt/src/modes/f8/f8_setiv.obj \
+#libtomcrypt/src/modes/f8/f8_start.obj \
+#libtomcrypt/src/modes/f8/f8_test_mode.obj \
+#libtomcrypt/src/modes/lrw/lrw_decrypt.obj \
+#libtomcrypt/src/modes/lrw/lrw_done.obj \
+#libtomcrypt/src/modes/lrw/lrw_encrypt.obj \
+#libtomcrypt/src/modes/lrw/lrw_getiv.obj \
+#libtomcrypt/src/modes/lrw/lrw_process.obj \
+#libtomcrypt/src/modes/lrw/lrw_setiv.obj \
+#libtomcrypt/src/modes/lrw/lrw_start.obj \
+#libtomcrypt/src/modes/lrw/lrw_test.obj \
+#libtomcrypt/src/modes/ofb/ofb_decrypt.obj \
+#libtomcrypt/src/modes/ofb/ofb_done.obj \
+#libtomcrypt/src/modes/ofb/ofb_encrypt.obj \
+#libtomcrypt/src/modes/ofb/ofb_getiv.obj \
+#libtomcrypt/src/modes/ofb/ofb_setiv.obj \
+#libtomcrypt/src/modes/ofb/ofb_start.obj \
+#libtomcrypt/src/modes/xts/xts_decrypt.obj \
+#libtomcrypt/src/modes/xts/xts_done.obj \
+#libtomcrypt/src/modes/xts/xts_encrypt.obj \
+#libtomcrypt/src/modes/xts/xts_init.obj \
+#libtomcrypt/src/modes/xts/xts_mult_x.obj \
+#libtomcrypt/src/modes/xts/xts_test.obj \
+libtomcrypt/src/pk/asn1/der/bit/der_decode_bit_string.obj \
+libtomcrypt/src/pk/asn1/der/bit/der_encode_bit_string.obj \
+libtomcrypt/src/pk/asn1/der/bit/der_decode_raw_bit_string.obj \
+libtomcrypt/src/pk/asn1/der/bit/der_encode_raw_bit_string.obj \
+libtomcrypt/src/pk/asn1/der/bit/der_length_bit_string.obj \
+libtomcrypt/src/pk/asn1/der/boolean/der_decode_boolean.obj \
+libtomcrypt/src/pk/asn1/der/boolean/der_encode_boolean.obj \
+libtomcrypt/src/pk/asn1/der/boolean/der_length_boolean.obj \
+libtomcrypt/src/pk/asn1/der/choice/der_decode_choice.obj \
+libtomcrypt/src/pk/asn1/der/ia5/der_decode_ia5_string.obj \
+libtomcrypt/src/pk/asn1/der/ia5/der_encode_ia5_string.obj \
+libtomcrypt/src/pk/asn1/der/ia5/der_length_ia5_string.obj \
+libtomcrypt/src/pk/asn1/der/integer/der_decode_integer.obj \
+libtomcrypt/src/pk/asn1/der/integer/der_encode_integer.obj \
+libtomcrypt/src/pk/asn1/der/integer/der_length_integer.obj \
+libtomcrypt/src/pk/asn1/der/object_identifier/der_decode_object_identifier.obj \
+libtomcrypt/src/pk/asn1/der/object_identifier/der_encode_object_identifier.obj \
+libtomcrypt/src/pk/asn1/der/object_identifier/der_length_object_identifier.obj \
+libtomcrypt/src/pk/asn1/der/octet/der_decode_octet_string.obj \
+libtomcrypt/src/pk/asn1/der/octet/der_encode_octet_string.obj \
+libtomcrypt/src/pk/asn1/der/octet/der_length_octet_string.obj \
+libtomcrypt/src/pk/asn1/der/printable_string/der_decode_printable_string.obj \
+libtomcrypt/src/pk/asn1/der/printable_string/der_encode_printable_string.obj \
+libtomcrypt/src/pk/asn1/der/printable_string/der_length_printable_string.obj \
+libtomcrypt/src/pk/asn1/der/sequence/der_decode_sequence_ex.obj \
+#libtomcrypt/src/pk/asn1/der/sequence/der_decode_sequence_flexi.obj \
+libtomcrypt/src/pk/asn1/der/sequence/der_decode_sequence_multi.obj \
+libtomcrypt/src/pk/asn1/der/sequence/der_decode_subject_public_key_info.obj \
+libtomcrypt/src/pk/asn1/der/sequence/der_encode_sequence_ex.obj \
+libtomcrypt/src/pk/asn1/der/sequence/der_encode_sequence_multi.obj \
+libtomcrypt/src/pk/asn1/der/sequence/der_encode_subject_public_key_info.obj \
+libtomcrypt/src/pk/asn1/der/sequence/der_length_sequence.obj \
+#libtomcrypt/src/pk/asn1/der/sequence/der_sequence_free.obj \
+libtomcrypt/src/pk/asn1/der/set/der_encode_set.obj \
+libtomcrypt/src/pk/asn1/der/set/der_encode_setof.obj \
+libtomcrypt/src/pk/asn1/der/short_integer/der_decode_short_integer.obj \
+libtomcrypt/src/pk/asn1/der/short_integer/der_encode_short_integer.obj \
+libtomcrypt/src/pk/asn1/der/short_integer/der_length_short_integer.obj \
+libtomcrypt/src/pk/asn1/der/utctime/der_decode_utctime.obj \
+libtomcrypt/src/pk/asn1/der/utctime/der_encode_utctime.obj \
+libtomcrypt/src/pk/asn1/der/utctime/der_length_utctime.obj \
+libtomcrypt/src/pk/asn1/der/utf8/der_decode_utf8_string.obj \
+libtomcrypt/src/pk/asn1/der/utf8/der_encode_utf8_string.obj \
+libtomcrypt/src/pk/asn1/der/utf8/der_length_utf8_string.obj \
+#libtomcrypt/src/pk/dsa/dsa_decrypt_key.obj \
+#libtomcrypt/src/pk/dsa/dsa_encrypt_key.obj \
+#libtomcrypt/src/pk/dsa/dsa_export.obj \
+#libtomcrypt/src/pk/dsa/dsa_free.obj \
+#libtomcrypt/src/pk/dsa/dsa_import.obj \
+#libtomcrypt/src/pk/dsa/dsa_make_key.obj \
+#libtomcrypt/src/pk/dsa/dsa_shared_secret.obj \
+#libtomcrypt/src/pk/dsa/dsa_sign_hash.obj \
+#libtomcrypt/src/pk/dsa/dsa_verify_hash.obj \
+#libtomcrypt/src/pk/dsa/dsa_verify_key.obj \
+#libtomcrypt/src/pk/ecc/ecc_ansi_x963_export.obj \
+#libtomcrypt/src/pk/ecc/ecc_ansi_x963_import.obj \
+#libtomcrypt/src/pk/ecc/ecc.obj \
+#libtomcrypt/src/pk/ecc/ecc_decrypt_key.obj \
+#libtomcrypt/src/pk/ecc/ecc_encrypt_key.obj \
+#libtomcrypt/src/pk/ecc/ecc_export.obj \
+#libtomcrypt/src/pk/ecc/ecc_free.obj \
+#libtomcrypt/src/pk/ecc/ecc_get_size.obj \
+#libtomcrypt/src/pk/ecc/ecc_import.obj \
+#libtomcrypt/src/pk/ecc/ecc_make_key.obj \
+#libtomcrypt/src/pk/ecc/ecc_shared_secret.obj \
+#libtomcrypt/src/pk/ecc/ecc_sign_hash.obj \
+#libtomcrypt/src/pk/ecc/ecc_sizes.obj \
+#libtomcrypt/src/pk/ecc/ecc_test.obj \
+#libtomcrypt/src/pk/ecc/ecc_verify_hash.obj \
+#libtomcrypt/src/pk/ecc/ltc_ecc_is_valid_idx.obj \
+libtomcrypt/src/pk/ecc/ltc_ecc_map.obj \
+libtomcrypt/src/pk/ecc/ltc_ecc_mul2add.obj \
+libtomcrypt/src/pk/ecc/ltc_ecc_mulmod.obj \
+#libtomcrypt/src/pk/ecc/ltc_ecc_mulmod_timing.obj \
+libtomcrypt/src/pk/ecc/ltc_ecc_points.obj \
+libtomcrypt/src/pk/ecc/ltc_ecc_projective_add_point.obj \
+libtomcrypt/src/pk/ecc/ltc_ecc_projective_dbl_point.obj \
+#libtomcrypt/src/pk/katja/katja_decrypt_key.obj \
+#libtomcrypt/src/pk/katja/katja_encrypt_key.obj \
+#libtomcrypt/src/pk/katja/katja_export.obj \
+#libtomcrypt/src/pk/katja/katja_exptmod.obj \
+#libtomcrypt/src/pk/katja/katja_free.obj \
+#libtomcrypt/src/pk/katja/katja_import.obj \
+#libtomcrypt/src/pk/katja/katja_make_key.obj \
+#libtomcrypt/src/pk/pkcs1/pkcs_1_i2osp.obj \
+libtomcrypt/src/pk/pkcs1/pkcs_1_mgf1.obj \
+#libtomcrypt/src/pk/pkcs1/pkcs_1_oaep_decode.obj \
+#libtomcrypt/src/pk/pkcs1/pkcs_1_oaep_encode.obj \
+#libtomcrypt/src/pk/pkcs1/pkcs_1_os2ip.obj \
+libtomcrypt/src/pk/pkcs1/pkcs_1_pss_decode.obj \
+libtomcrypt/src/pk/pkcs1/pkcs_1_pss_encode.obj \
+libtomcrypt/src/pk/pkcs1/pkcs_1_v1_5_decode.obj \
+libtomcrypt/src/pk/pkcs1/pkcs_1_v1_5_encode.obj \
+#libtomcrypt/src/pk/rsa/rsa_decrypt_key.obj \
+#libtomcrypt/src/pk/rsa/rsa_encrypt_key.obj \
+libtomcrypt/src/pk/rsa/rsa_export.obj \
+libtomcrypt/src/pk/rsa/rsa_exptmod.obj \
+libtomcrypt/src/pk/rsa/rsa_free.obj \
+libtomcrypt/src/pk/rsa/rsa_import.obj \
+libtomcrypt/src/pk/rsa/rsa_make_key.obj \
+libtomcrypt/src/pk/rsa/rsa_sign_hash.obj \
+libtomcrypt/src/pk/rsa/rsa_verify_hash.obj \
+#libtomcrypt/src/prngs/fortuna.obj \
+#libtomcrypt/src/prngs/rc4.obj \
+libtomcrypt/src/prngs/rng_get_bytes.obj \
+#libtomcrypt/src/prngs/rng_make_prng.obj \
+#libtomcrypt/src/prngs/sober128.obj \
+libtomcrypt/src/prngs/sprng.obj \
+#libtomcrypt/src/prngs/yarrow.obj
+
+LTC_HEADERS = \
+libtomcrypt/src/headers/tomcrypt_cfg.h \
+libtomcrypt/src/headers/tomcrypt_mac.h \
+libtomcrypt/src/headers/tomcrypt_macros.h \
+libtomcrypt/src/headers/tomcrypt_custom.h \
+libtomcrypt/src/headers/tomcrypt_argchk.h \
+libtomcrypt/src/headers/tomcrypt_cipher.h \
+libtomcrypt/src/headers/tomcrypt_pk.h \
+libtomcrypt/src/headers/tomcrypt_hash.h \
+libtomcrypt/src/headers/tomcrypt_math.h \
+libtomcrypt/src/headers/tomcrypt_misc.h \
+libtomcrypt/src/headers/tomcrypt.h \
+libtomcrypt/src/headers/tomcrypt_pkcs.h \
+libtomcrypt/src/headers/tomcrypt_prng.h \
+libtomcrypt/src/hashes/sha2/sha224.c \
+libtomcrypt/src/hashes/sha2/sha384.c
+
+default: libtommath libtomcrypt
+
+{libtommath}.c.obj::
+	$(CC) $(CFLAGS) /Ilibtommath /Folibtommath/ /c $<
+
+$(LTM_LIBNAME): $(LTM_OBJECTS)
+	lib /out:$@ $**
+
+libtommath: $(LTM_LIBNAME)
+
+LTC_CFLAGS = $(CFLAGS) /Ilibtomcrypt/src/headers /Ilibtommath /DLTC_SOURCE /DLTM_DESC /Fo$@
+
+{libtomcrypt/src/ciphers}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/ciphers/aes}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+#ciphers come in two flavours... enc+dec and enc
+libtomcrypt/src/ciphers/aes/aes_enc.obj: libtomcrypt/src/ciphers/aes/aes.c libtomcrypt/src/ciphers/aes/aes_tab.c
+	$(CC) $(LTC_CFLAGS) /DENCRYPT_ONLY /c libtomcrypt/src/ciphers/aes/aes.c
+
+{libtomcrypt/src/ciphers/safer}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/ciphers/twofish}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/encauth/ccm}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+	
+{libtomcrypt/src/encauth/eax}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/encauth/gcm}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/encauth/ocb}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/hashes}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/hashes/chc}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/hashes/helper}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/hashes/sha2}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/hashes/whirl}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/mac/f9}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/mac/hmac}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/mac/omac}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/mac/pelican}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/mac/pmac}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/mac/xcbc}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/math}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/math/fp}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/misc}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/misc/base64}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/misc/crypt}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/misc/pkcs5}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/modes/cbc}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/modes/cfb}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/modes/ctr}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/modes/ecb}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/modes/f8}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/modes/lrw}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/modes/ofb}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/modes/xts}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/bit}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/boolean}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/choice}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/ia5}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/integer}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/object_identifier}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/octet}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/printable_string}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/sequence}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/set}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/short_integer}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/utctime}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/utf8}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/dsa}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/ecc}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/katja}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/pkcs1}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/rsa}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/prngs}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+$(LTC_LIBNAME): $(LTC_OBJECTS)
+	lib /out:$@ $**
+
+libtomcrypt: $(LTC_LIBNAME)
+
+CPPFLAGS = $(CFLAGS) /Ilibtomcrypt/src/headers /DLTM_DESC
+LIBS = $(LTM_LIBNAME) $(LTC_LIBNAME) advapi32.lib
+
+rsa_make_key.exe: rsa_make_key.cpp
+	$(CPP) $(CPPFLAGS) $** $(LIBS)
+
+key: rsa_make_key.exe
+	rsa_make_key.exe private_key.der public_key.der
+
+rsa_sign.exe: rsa_sign.cpp
+	$(CPP) $(CPPFLAGS) $** $(LIBS)
+
+sign: rsa_sign.exe
+	rsa_sign.exe "hello, world" private_key.der > signature.txt
+	@type signature.txt
+
+rsa_verify.exe: rsa_verify.cpp
+	$(CPP) $(CPPFLAGS) $** $(LIBS)
+
+verify: rsa_verify.exe
+	rsa_verify.exe "hello, world" signature.txt public_key.der
+
+test: sign verify
+
+dertoh.exe: dertoh.cpp
+	$(CPP) $(CFLAGS) $**
+
+dertoh: dertoh.exe
+	dertoh.exe public_key.der public_key > public_key.h
+
+clean:
+	for /r %i in (*.obj *.lib *.exe) do @del "%i"
+	for %i in (private_key.der public_key.der signature.txt public_key.h) do @if exist "%i" del "%i"

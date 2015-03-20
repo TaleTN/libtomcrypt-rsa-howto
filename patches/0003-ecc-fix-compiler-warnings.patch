@@ -1,0 +1,28 @@
+From 6f998371dccba0956643bf47c7ef405c1ba96f56 Mon Sep 17 00:00:00 2001
+From: Steffen Jaeckel <steffen.jaeckel@stzedn.de>
+Date: Fri, 22 Mar 2013 13:45:36 +0200
+Subject: [PATCH 3/3] ecc: fix compiler warnings
+
+---
+ libtomcrypt/src/pk/ecc/ltc_ecc_mul2add.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/libtomcrypt/src/pk/ecc/ltc_ecc_mul2add.c b/libtomcrypt/src/pk/ecc/ltc_ecc_mul2add.c
+index e5174a4..a6d1aab 100644
+--- a/libtomcrypt/src/pk/ecc/ltc_ecc_mul2add.c
++++ b/libtomcrypt/src/pk/ecc/ltc_ecc_mul2add.c
+@@ -40,9 +40,9 @@ int ltc_ecc_mul2add(ecc_point *A, void *kA,
+                          void *modulus)
+ {
+   ecc_point     *precomp[16];
+-  unsigned       bitbufA, bitbufB, lenA, lenB, len, y, nA, nB, nibble;
++  unsigned       bitbufA, bitbufB, lenA, lenB, len, x, y, nA, nB, nibble;
+   unsigned char *tA, *tB;
+-  int            err, first, x;
++  int            err, first;
+   void          *mp, *mu;
+  
+   /* argchks */
+-- 
+1.9.5.msysgit.0
+

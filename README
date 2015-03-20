@@ -1,0 +1,61 @@
+LIBTOMCRYPT RSA DIGITAL SIGNATURES HOW-TO
+
+This how-to describes how to implement RSA digital signatures using
+LibTomCrypt (and LibTomMath) on Windows.
+
+GETTING STARTED
+
+1. Get LibTomMath and LibTomCrypt
+
+   git clone -b master https://github.com/libtom/libtommath.git
+   git clone -b master https://github.com/libtom/libtomcrypt.git
+
+2. Patch LibTomCrypt
+
+   git apply patches\0001-der-fixes-and-additions.patch
+   git apply patches\0002-dsa-fix-compiler-warning.patch
+   git apply patches\0003-ecc-fix-compiler-warnings.patch
+
+3. Remove unused source files (optional)
+
+   remove_unsued.pl --force
+
+4. Build LibTomMath and LibTomCrypt
+
+   nmake -f makefile.msvc
+
+5. Generate public/private key pair
+
+   nmake -f makefile.msvc key
+
+6. Run sign and verify examples
+
+   nmake -f makefile.msvc test
+
+7. Have fun!
+
+FILES IN THIS DISTRIBUTION
+
+dertoh.cpp       - Utility to convert from DER to C/C++ header file format,
+                   so you can directly include the public key in a C/C++
+                   source file.
+dertopem.sh      - Bash script that uses OpenSSL to convert the public and
+                   private key pair from DER to PEM file format.
+error.h          - Helper routines for rsa_make_key.cpp, rsa_sign.cpp, and
+                   rsa_verify.cpp.
+LICENSE          - License, duh!
+makefile.msvc    - Microsoft C/C++ makefile.
+patches/         - LibTomCrypt patches.
+README           - <-- You are here.
+remove_unused.pl - Perl script that removes all unsued LibTomMath and
+                   LibTomCrypt files.
+rsa_make_key.cpp - Example that generates a public and private key pair.
+rsa_sign.cpp     - Example that signs a message.
+rsa_verify.cpp   - Example that verifies a signature.
+
+LICENSE
+
+Copyright (C) 2015 Theo Niessink <theo@taletn.com>
+This work is free. You can redistribute it and/or modify it under the
+terms of the Do What The Fuck You Want To Public License, Version 2,
+as published by Sam Hocevar. See the LICENSE file for more details.
