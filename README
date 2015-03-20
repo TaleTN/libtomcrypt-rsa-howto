@@ -18,7 +18,7 @@ GETTING STARTED
 
 3. Remove unused source files (optional)
 
-   perl remove_unsued.pl --force
+   perl remove_unused.pl --force
 
 4. Build LibTomMath and LibTomCrypt
 
