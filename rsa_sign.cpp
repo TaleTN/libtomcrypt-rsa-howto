@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 	if (hash_idx < 0) return error(CRYPT_INVALID_HASH, &key);
 
 	// Hash message.
-	unsigned char hash[MAXBLOCKSIZE];
+	unsigned char hash[64];
 	hash_state md;
 	hash_desc.init(&md);
 	hash_desc.process(&md, (const unsigned char*)msg, (unsigned long)strlen(msg));
