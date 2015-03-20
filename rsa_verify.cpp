@@ -22,7 +22,7 @@ int main(int argc, char** argv)
 	// Read public key.
 	FILE* f = fopen(public_key, "rb");
 	if (!f) return error(CRYPT_FILE_NOTFOUND);
-	unsigned char buf[400]; // 2048 bit
+	unsigned char buf[MAX_RSA_SIZE * 100 / 512]; // guesstimate
 	unsigned long buflen = (unsigned long)fread(buf, 1, sizeof(buf), f);
 	fclose(f);
 	if (!buflen) return error(CRYPT_ERROR);
@@ -40,7 +40,7 @@ int main(int argc, char** argv)
 	if (!buflen) return error(CRYPT_ERROR, &key);
 
 	// Decode signature.
-	unsigned char sig[256];
+	unsigned char sig[MAX_RSA_SIZE / 8];
 	unsigned long siglen = sizeof(sig);
 	err = base64_decode(buf, buflen, sig, &siglen);
 	if (err != CRYPT_OK) return error(err, &key);

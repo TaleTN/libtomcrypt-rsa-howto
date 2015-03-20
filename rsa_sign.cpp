@@ -21,7 +21,7 @@ int main(int argc, char** argv)
 	// Read private key.
 	FILE* f = fopen(private_key, "rb");
 	if (!f) return error(CRYPT_FILE_NOTFOUND);
-	unsigned char buf[1200]; // 2048 bit
+	unsigned char buf[MAX_RSA_SIZE * 5 / 8]; // guesstimate
 	unsigned long buflen = (unsigned long)fread(buf, 1, sizeof(buf), f);
 	fclose(f);
 	if (!buflen) return error(CRYPT_ERROR);
@@ -52,7 +52,7 @@ int main(int argc, char** argv)
 	if (prng_idx < 0) return error(CRYPT_INVALID_PRNG, &key);
 
 	// Sign hash.
-	unsigned char sig[256];
+	unsigned char sig[MAX_RSA_SIZE / 8];
 	unsigned long siglen = sizeof(sig);
 	err = rsa_sign_hash_ex(hash, hash_desc.hashsize, sig, &siglen, padding, NULL, prng_idx, hash_idx, saltlen, &key);
 	if (err != CRYPT_OK) return error(err, &key);
