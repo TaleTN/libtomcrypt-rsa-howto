@@ -226,24 +226,24 @@ libtomcrypt/src/ciphers/aes/aes_enc.o: libtomcrypt/src/ciphers/aes/aes.c libtomc
 
 libtomcrypt: $(LTC_OBJECTS)
 
-CPPFLAGS = $(CFLAGS) -Ilibtomcrypt/src/headers -DLTM_DESC
+CXXFLAGS = $(CFLAGS) -Ilibtomcrypt/src/headers -DLTM_DESC
 LT_OBJECTS = $(LTM_OBJECTS) $(LTC_OBJECTS)
 
 rsa_make_key: rsa_make_key.cpp
-	$(CC) $(CPPFLAGS) -o $@ $^ $(LT_OBJECTS)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LT_OBJECTS)
 
 key: rsa_make_key
 	./rsa_make_key private_key.der public_key.der
 
 rsa_sign: rsa_sign.cpp
-	$(CC) $(CPPFLAGS) -o $@ $^ $(LT_OBJECTS)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LT_OBJECTS)
 
 sign: rsa_sign
 	./rsa_sign "hello, world" private_key.der > signature.txt
 	@cat signature.txt
 
 rsa_verify: rsa_verify.cpp
-	$(CC) $(CPPFLAGS) -o $@ $^ $(LT_OBJECTS)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LT_OBJECTS)
 
 verify: rsa_verify
 	./rsa_verify "hello, world" signature.txt public_key.der
@@ -252,7 +252,7 @@ test: sign verify
 
 .PHONY: dertoh
 dertoh: dertoh.cpp
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CXX) $(CFLAGS) -o $@ $^
 	./dertoh public_key.der public_key > public_key.h
 
 clean:
