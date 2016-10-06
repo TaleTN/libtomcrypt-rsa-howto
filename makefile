@@ -1,4 +1,4 @@
-# Copyright (C) 2015 Theo Niessink <theo@taletn.com>
+# Copyright (C) 2015, 2016 Theo Niessink <theo@taletn.com>
 # This work is free. You can redistribute it and/or modify it under the
 # terms of the Do What The Fuck You Want To Public License, Version 2,
 # as published by Sam Hocevar. See the LICENSE file for more details.
@@ -103,6 +103,7 @@ libtommath/bn_mp_invmod_slow.o
 LTM_HEADERS = \
 libtommath/tommath.h \
 libtommath/tommath_class.h \
+libtommath/tommath_private.h \
 libtommath/tommath_superclass.h
 
 LTC_OBJECTS = \
