@@ -1,0 +1,36 @@
+From 6123d9b1b0e1bf6af0e6d75175bae4b92a577456 Mon Sep 17 00:00:00 2001
+From: Steffen Jaeckel <steffen.jaeckel@stzedn.de>
+Date: Thu, 18 Apr 2013 16:45:23 +0200
+Subject: [PATCH 5/8] der_encode_setof: fix compiler warning when compiling for
+ windows 64bit
+
+---
+ libtomcrypt/src/pk/asn1/der/set/der_encode_setof.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/libtomcrypt/src/pk/asn1/der/set/der_encode_setof.c b/libtomcrypt/src/pk/asn1/der/set/der_encode_setof.c
+index 8e87f84..b6a2d1a 100644
+--- a/libtomcrypt/src/pk/asn1/der/set/der_encode_setof.c
++++ b/libtomcrypt/src/pk/asn1/der/set/der_encode_setof.c
+@@ -61,7 +61,8 @@ static int qsort_helper(const void *a, const void *b)
+ int der_encode_setof(ltc_asn1_list *list, unsigned long inlen,
+                      unsigned char *out,  unsigned long *outlen)
+ {
+-   unsigned long  x, y, z, hdrlen;
++   unsigned long  x, y, z;
++   ptrdiff_t hdrlen;
+    int            err;
+    struct edge   *edges;
+    unsigned char *ptr, *buf;
+@@ -102,7 +103,7 @@ int der_encode_setof(ltc_asn1_list *list, unsigned long inlen,
+       }
+       
+       /* get the size of the static header */
+-      hdrlen = ((unsigned long)ptr) - ((unsigned long)buf);
++      hdrlen = ptr - buf;
+       
+       
+    /* scan for edges */
+-- 
+2.10.1.windows.1
+

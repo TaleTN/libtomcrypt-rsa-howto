@@ -12,9 +12,7 @@ GETTING STARTED
 
 2. Patch LibTomCrypt
 
-   git apply patches/0001-der-fixes-and-additions.patch
-   git apply patches/0002-dsa-fix-compiler-warning.patch
-   git apply patches/0003-ecc-fix-compiler-warnings.patch
+   [n]make [-f makefile.msvc] patch
 
 3. Remove unused source files (optional)
 
@@ -56,7 +54,7 @@ rsa_verify.cpp   - Example that verifies a signature.
 
 LICENSE
 
-Copyright (C) 2015 Theo Niessink <theo@taletn.com>
+Copyright (C) 2015, 2016 Theo Niessink <theo@taletn.com>
 This work is free. You can redistribute it and/or modify it under the
 terms of the Do What The Fuck You Want To Public License, Version 2,
 as published by Sam Hocevar. See the LICENSE file for more details.

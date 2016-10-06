@@ -258,3 +258,13 @@ dertoh: dertoh.cpp
 clean:
 	rm -f `find . -type f | grep "[.]o" | xargs`
 	rm -f rsa_make_key rsa_sign rsa_verify dertoh private_key.der public_key.der signature.txt
+
+patch:
+	git apply patches/0001-der-fixes-and-additions.patch
+	git apply patches/0002-dsa-fix-compiler-warning.patch
+	git apply patches/0003-ecc-fix-compiler-warnings.patch
+	git apply patches/0004-include-stddef.h-per-default.patch
+	git apply patches/0005-der_encode_setof-fix-compiler-warning-when-compiling.patch
+	git apply patches/0006-fix-clang-compiler-warnings.patch
+	git apply patches/0007-only-use-ulong32-or-ulong64-in-the-macros.patch
+	git apply patches/0008-adjust-inline-asm-requiring-constants.patch

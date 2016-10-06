@@ -1,7 +1,7 @@
-From 6f998371dccba0956643bf47c7ef405c1ba96f56 Mon Sep 17 00:00:00 2001
+From fc90c2ae7f6a48e3ee98a31e82ce75ddf650c271 Mon Sep 17 00:00:00 2001
 From: Steffen Jaeckel <steffen.jaeckel@stzedn.de>
 Date: Fri, 22 Mar 2013 13:45:36 +0200
-Subject: [PATCH 3/3] ecc: fix compiler warnings
+Subject: [PATCH 3/8] ecc: fix compiler warnings
 
 ---
  libtomcrypt/src/pk/ecc/ltc_ecc_mul2add.c | 4 ++--
@@ -24,5 +24,5 @@ index e5174a4..a6d1aab 100644
   
    /* argchks */
 -- 
-1.9.5.msysgit.0
+2.10.1.windows.1
 

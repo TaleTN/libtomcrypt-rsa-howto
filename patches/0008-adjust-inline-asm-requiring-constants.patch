@@ -1,0 +1,94 @@
+From eb96bfcde2610ca521eea1f532f6a93768626dc0 Mon Sep 17 00:00:00 2001
+From: Saleem Abdulrasool <compnerd@compnerd.org>
+Date: Sun, 4 Jan 2015 22:53:08 -0800
+Subject: [PATCH 8/8] adjust inline asm requiring constants
+
+In order to ensure that the shift is within range, convert the inline assembly
+routines into macros with compound statements.
+---
+ libtomcrypt/src/headers/tomcrypt_macros.h | 62 ++++++++++++++++++++++---------------------
+ 1 file changed, 32 insertions(+), 30 deletions(-)
+
+diff --git a/libtomcrypt/src/headers/tomcrypt_macros.h b/libtomcrypt/src/headers/tomcrypt_macros.h
+index faa4c89..56d2c0c 100644
+--- a/libtomcrypt/src/headers/tomcrypt_macros.h
++++ b/libtomcrypt/src/headers/tomcrypt_macros.h
+@@ -262,21 +262,22 @@ static inline ulong32 ROR(ulong32 word, int i)
+ 
+ #ifndef LTC_NO_ROLC
+ 
+-static inline ulong32 ROLc(ulong32 word, const int i)
+-{
+-   asm ("roll %2,%0"
+-      :"=r" (word)
+-      :"0" (word),"I" (i));
+-   return word;
+-}
+-
+-static inline ulong32 RORc(ulong32 word, const int i)
+-{
+-   asm ("rorl %2,%0"
+-      :"=r" (word)
+-      :"0" (word),"I" (i));
+-   return word;
+-}
++#define ROLc(word,i) ({ \
++   ulong32 __ROLc_tmp = word; \
++   __asm__ ("roll %2, %0" : \
++            "=r" (__ROLc_tmp) : \
++            "0" (__ROLc_tmp), \
++            "I" (i)); \
++            __ROLc_tmp; \
++   })
++#define RORc(word,i) ({ \
++   ulong32 __RORc_tmp = word; \
++   __asm__ ("rorl %2, %0" : \
++            "=r" (__RORc_tmp) : \
++            "0" (__RORc_tmp), \
++            "I" (i)); \
++            __RORc_tmp; \
++   })
+ 
+ #else
+ 
+@@ -361,21 +362,22 @@ static inline ulong64 ROR64(ulong64 word, int i)
+ 
+ #ifndef LTC_NO_ROLC
+ 
+-static inline ulong64 ROL64c(ulong64 word, const int i)
+-{
+-   asm("rolq %2,%0"
+-      :"=r" (word)
+-      :"0" (word),"J" (i));
+-   return word;
+-}
+-
+-static inline ulong64 ROR64c(ulong64 word, const int i)
+-{
+-   asm("rorq %2,%0"
+-      :"=r" (word)
+-      :"0" (word),"J" (i));
+-   return word;
+-}
++#define ROL64c(word,i) ({ \
++   ulong64 __ROL64c_tmp = word; \
++   __asm__ ("rolq %2, %0" : \
++            "=r" (__ROL64c_tmp) : \
++            "0" (__ROL64c_tmp), \
++            "J" (i)); \
++            __ROL64c_tmp; \
++   })
++#define ROR64c(word,i) ({ \
++   ulong64 __ROR64c_tmp = word; \
++   __asm__ ("rorq %2, %0" : \
++            "=r" (__ROR64c_tmp) : \
++            "0" (__ROR64c_tmp), \
++            "J" (i)); \
++            __ROR64c_tmp; \
++   })
+ 
+ #else /* LTC_NO_ROLC */
+ 
+-- 
+2.10.1.windows.1
+
