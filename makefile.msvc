@@ -3,7 +3,7 @@
 # terms of the Do What The Fuck You Want To Public License, Version 2,
 # as published by Sam Hocevar. See the LICENSE file for more details.
 
-CFLAGS = /O2 /GS- /GR- /DNDEBUG /DWIN32 /D_CRT_SECURE_NO_WARNINGS /W3
+CFLAGS = /O2 /GS- /DNDEBUG /DWIN32 /D_CRT_SECURE_NO_WARNINGS /W3
 
 LTM_LIBNAME = libtommath/tommath.lib
 
@@ -298,7 +298,7 @@ $(LTC_LIBNAME): $(LTC_OBJECTS)
 
 libtomcrypt: $(LTC_LIBNAME)
 
-CPPFLAGS = $(CFLAGS) /Ilibtomcrypt/src/headers /DLTM_DESC
+CPPFLAGS = $(CFLAGS) /GR- /Ilibtomcrypt/src/headers /DLTM_DESC
 LIBS = $(LTM_LIBNAME) $(LTC_LIBNAME) advapi32.lib
 
 rsa_make_key.exe: rsa_make_key.cpp

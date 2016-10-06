@@ -3,7 +3,7 @@
 # terms of the Do What The Fuck You Want To Public License, Version 2,
 # as published by Sam Hocevar. See the LICENSE file for more details.
 
-CFLAGS = -O2 -fno-rtti -fno-stack-protector -DNDEBUG -Wall
+CFLAGS = -O2 -fno-stack-protector -DNDEBUG -Wall
 
 LTM_OBJECTS = \
 libtommath/bncore.o \
@@ -226,7 +226,7 @@ libtomcrypt/src/ciphers/aes/aes_enc.o: libtomcrypt/src/ciphers/aes/aes.c libtomc
 
 libtomcrypt: $(LTC_OBJECTS)
 
-CXXFLAGS = $(CFLAGS) -Ilibtomcrypt/src/headers -DLTM_DESC
+CXXFLAGS = $(CFLAGS) -fno-rtti -Ilibtomcrypt/src/headers -DLTM_DESC
 LT_OBJECTS = $(LTM_OBJECTS) $(LTC_OBJECTS)
 
 rsa_make_key: rsa_make_key.cpp
