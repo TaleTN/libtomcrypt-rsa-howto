@@ -1,4 +1,4 @@
-# Copyright (C) 2015, 2016 Theo Niessink <theo@taletn.com>
+# Copyright (C) 2015-2017 Theo Niessink <theo@taletn.com>
 # This work is free. You can redistribute it and/or modify it under the
 # terms of the Do What The Fuck You Want To Public License, Version 2,
 # as published by Sam Hocevar. See the LICENSE file for more details.
@@ -260,11 +260,11 @@ clean:
 	rm -f rsa_make_key rsa_sign rsa_verify dertoh private_key.der public_key.der signature.txt
 
 patch:
-	git apply patches/0001-der-fixes-and-additions.patch
-	git apply patches/0002-dsa-fix-compiler-warning.patch
-	git apply patches/0003-ecc-fix-compiler-warnings.patch
-	git apply patches/0004-include-stddef.h-per-default.patch
-	git apply patches/0005-der_encode_setof-fix-compiler-warning-when-compiling.patch
-	git apply patches/0006-fix-clang-compiler-warnings.patch
-	git apply patches/0007-only-use-ulong32-or-ulong64-in-the-macros.patch
-	git apply patches/0008-adjust-inline-asm-requiring-constants.patch
+	git apply --whitespace=fix patches/0001-der-fixes-and-additions.patch
+	git apply --whitespace=fix patches/0002-dsa-fix-compiler-warning.patch
+	git apply --whitespace=fix patches/0003-ecc-fix-compiler-warnings.patch
+	git apply --whitespace=fix patches/0004-include-stddef.h-per-default.patch
+	git apply --whitespace=fix patches/0005-der_encode_setof-fix-compiler-warning-when-compiling.patch
+	git apply --whitespace=fix patches/0006-fix-clang-compiler-warnings.patch
+	git apply --whitespace=fix patches/0007-only-use-ulong32-or-ulong64-in-the-macros.patch
+	git apply --whitespace=fix patches/0008-adjust-inline-asm-requiring-constants.patch
