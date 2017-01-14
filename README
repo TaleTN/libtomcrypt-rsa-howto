@@ -7,8 +7,8 @@ GETTING STARTED
 
 1. Get LibTomMath and LibTomCrypt
 
-   git clone -b master https://github.com/libtom/libtommath.git
-   git clone -b master https://github.com/libtom/libtomcrypt.git
+   git clone https://github.com/TaleTN/libtommath.git
+   git clone https://github.com/TaleTN/libtomcrypt.git
 
 2. Patch LibTomCrypt
 
@@ -54,7 +54,7 @@ rsa_verify.cpp   - Example that verifies a signature.
 
 LICENSE
 
-Copyright (C) 2015, 2016 Theo Niessink <theo@taletn.com>
+Copyright (C) 2015-2017 Theo Niessink <theo@taletn.com>
 This work is free. You can redistribute it and/or modify it under the
 terms of the Do What The Fuck You Want To Public License, Version 2,
 as published by Sam Hocevar. See the LICENSE file for more details.
