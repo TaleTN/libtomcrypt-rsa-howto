@@ -1,4 +1,4 @@
-# Copyright (C) 2015-2017 Theo Niessink <theo@taletn.com>
+# Copyright (C) 2015-2018 Theo Niessink <theo@taletn.com>
 # This work is free. You can redistribute it and/or modify it under the
 # terms of the Do What The Fuck You Want To Public License, Version 2,
 # as published by Sam Hocevar. See the LICENSE file for more details.
@@ -129,7 +129,9 @@ libtomcrypt/src/misc/crypt/crypt_prng_descriptor.obj \
 libtomcrypt/src/misc/crypt/crypt_prng_is_valid.obj \
 libtomcrypt/src/misc/crypt/crypt_register_hash.obj \
 libtomcrypt/src/misc/crypt/crypt_register_prng.obj \
+libtomcrypt/src/misc/compare_testvector.obj \
 libtomcrypt/src/misc/error_to_string.obj \
+libtomcrypt/src/misc/mem_neq.obj \
 libtomcrypt/src/misc/pk_get_oid.obj \
 libtomcrypt/src/misc/zeromem.obj \
 libtomcrypt/src/pk/asn1/der/bit/der_decode_bit_string.obj \
@@ -141,6 +143,9 @@ libtomcrypt/src/pk/asn1/der/boolean/der_decode_boolean.obj \
 libtomcrypt/src/pk/asn1/der/boolean/der_encode_boolean.obj \
 libtomcrypt/src/pk/asn1/der/boolean/der_length_boolean.obj \
 libtomcrypt/src/pk/asn1/der/choice/der_decode_choice.obj \
+libtomcrypt/src/pk/asn1/der/generalizedtime/der_decode_generalizedtime.obj \
+libtomcrypt/src/pk/asn1/der/generalizedtime/der_encode_generalizedtime.obj \
+libtomcrypt/src/pk/asn1/der/generalizedtime/der_length_generalizedtime.obj \
 libtomcrypt/src/pk/asn1/der/ia5/der_decode_ia5_string.obj \
 libtomcrypt/src/pk/asn1/der/ia5/der_encode_ia5_string.obj \
 libtomcrypt/src/pk/asn1/der/ia5/der_length_ia5_string.obj \
@@ -168,6 +173,8 @@ libtomcrypt/src/pk/asn1/der/set/der_encode_setof.obj \
 libtomcrypt/src/pk/asn1/der/short_integer/der_decode_short_integer.obj \
 libtomcrypt/src/pk/asn1/der/short_integer/der_encode_short_integer.obj \
 libtomcrypt/src/pk/asn1/der/short_integer/der_length_short_integer.obj \
+libtomcrypt/src/pk/asn1/der/teletex_string/der_decode_teletex_string.obj \
+libtomcrypt/src/pk/asn1/der/teletex_string/der_length_teletex_string.obj \
 libtomcrypt/src/pk/asn1/der/utctime/der_decode_utctime.obj \
 libtomcrypt/src/pk/asn1/der/utctime/der_encode_utctime.obj \
 libtomcrypt/src/pk/asn1/der/utctime/der_length_utctime.obj \
@@ -177,6 +184,7 @@ libtomcrypt/src/pk/asn1/der/utf8/der_length_utf8_string.obj \
 libtomcrypt/src/pk/ecc/ltc_ecc_map.obj \
 libtomcrypt/src/pk/ecc/ltc_ecc_mul2add.obj \
 libtomcrypt/src/pk/ecc/ltc_ecc_mulmod.obj \
+libtomcrypt/src/pk/ecc/ltc_ecc_mulmod_timing.obj \
 libtomcrypt/src/pk/ecc/ltc_ecc_points.obj \
 libtomcrypt/src/pk/ecc/ltc_ecc_projective_add_point.obj \
 libtomcrypt/src/pk/ecc/ltc_ecc_projective_dbl_point.obj \
@@ -251,6 +259,9 @@ LTC_CFLAGS = $(CFLAGS) /Ilibtomcrypt/src/headers /Ilibtommath /DLTC_SOURCE /DLTM
 {libtomcrypt/src/pk/asn1/der/choice}.c.obj:
 	$(CC) $(LTC_CFLAGS) /c $<
 
+{libtomcrypt/src/pk/asn1/der/generalizedtime}.c.obj:
+       $(CC) $(LTC_CFLAGS) /c $<
+
 {libtomcrypt/src/pk/asn1/der/ia5}.c.obj:
 	$(CC) $(LTC_CFLAGS) /c $<
 
@@ -273,6 +284,9 @@ LTC_CFLAGS = $(CFLAGS) /Ilibtomcrypt/src/headers /Ilibtommath /DLTC_SOURCE /DLTM
 	$(CC) $(LTC_CFLAGS) /c $<
 
 {libtomcrypt/src/pk/asn1/der/short_integer}.c.obj:
+	$(CC) $(LTC_CFLAGS) /c $<
+
+{libtomcrypt/src/pk/asn1/der/teletex_string}.c.obj:
 	$(CC) $(LTC_CFLAGS) /c $<
 
 {libtomcrypt/src/pk/asn1/der/utctime}.c.obj:
