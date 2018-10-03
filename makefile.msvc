@@ -223,14 +223,14 @@ libtomcrypt/src/hashes/sha2/sha384.c
 default: libtommath libtomcrypt
 
 {libtommath}.c.obj::
-	$(CC) $(CFLAGS) /Ilibtommath /Folibtommath/ /c $<
+	$(CC) $(CFLAGS) /Ilibtommath /Folibtommath/ /DMP_32BIT /c $<
 
 $(LTM_LIBNAME): $(LTM_OBJECTS)
 	lib /out:$@ $**
 
 libtommath: $(LTM_LIBNAME)
 
-LTC_CFLAGS = $(CFLAGS) /Ilibtomcrypt/src/headers /Ilibtommath /DLTC_SOURCE /DLTM_DESC /Fo$@
+LTC_CFLAGS = $(CFLAGS) /Ilibtomcrypt/src/headers /Ilibtommath /DLTC_SOURCE /DLTM_DESC /DMP_32BIT /Fo$@
 
 {libtomcrypt/src/hashes}.c.obj:
 	$(CC) $(LTC_CFLAGS) /c $<
@@ -312,7 +312,7 @@ $(LTC_LIBNAME): $(LTC_OBJECTS)
 
 libtomcrypt: $(LTC_LIBNAME)
 
-CPPFLAGS = $(CFLAGS) /GR- /Ilibtomcrypt/src/headers /DLTM_DESC
+CPPFLAGS = $(CFLAGS) /GR- /Ilibtomcrypt/src/headers /DLTM_DESC /DMP_32BIT
 LIBS = $(LTM_LIBNAME) $(LTC_LIBNAME) advapi32.lib
 
 rsa_make_key.exe: rsa_make_key.cpp

@@ -219,11 +219,11 @@ libtomcrypt/src/hashes/sha2/sha384.c
 default: libtommath libtomcrypt
 
 libtommath/%.o: libtommath/%.c
-	$(CC) $(CFLAGS) -I./libtommath -o $@ -c $<
+	$(CC) $(CFLAGS) -I./libtommath -DMP_32BIT -o $@ -c $<
 
 libtommath: $(LTM_OBJECTS)
 
-LTC_CFLAGS = $(CFLAGS) -Ilibtomcrypt/src/headers -Ilibtommath -DLTC_SOURCE -DLTM_DESC -o $@
+LTC_CFLAGS = $(CFLAGS) -Ilibtomcrypt/src/headers -Ilibtommath -DLTC_SOURCE -DLTM_DESC -DMP_32BIT -o $@
 
 libtomcrypt/%.o: libtomcrypt/%.c
 	$(CC) $(LTC_CFLAGS) -c $<
@@ -234,7 +234,7 @@ libtomcrypt/src/ciphers/aes/aes_enc.o: libtomcrypt/src/ciphers/aes/aes.c libtomc
 
 libtomcrypt: $(LTC_OBJECTS)
 
-CXXFLAGS = $(CFLAGS) -fno-rtti -Ilibtomcrypt/src/headers -DLTM_DESC
+CXXFLAGS = $(CFLAGS) -fno-rtti -Ilibtomcrypt/src/headers -DLTM_DESC -DMP_32BIT
 LT_OBJECTS = $(LTM_OBJECTS) $(LTC_OBJECTS)
 
 rsa_make_key: rsa_make_key.cpp
