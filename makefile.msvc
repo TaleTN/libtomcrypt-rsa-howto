@@ -223,7 +223,7 @@ libtomcrypt/src/hashes/sha2/sha384.c
 default: libtommath libtomcrypt
 
 {libtommath}.c.obj::
-	$(CC) $(CFLAGS) /Ilibtommath /Folibtommath/ /DMP_32BIT /c $<
+	$(CC) $(CFLAGS) /Ilibtommath /Folibtommath/ /DMP_32BIT /wd4334 /c $<
 
 $(LTM_LIBNAME): $(LTM_OBJECTS)
 	lib /out:$@ $**
