@@ -1,9 +1,9 @@
-# Copyright (C) 2015-2018 Theo Niessink <theo@taletn.com>
+# Copyright (C) 2015-2021 Theo Niessink <theo@taletn.com>
 # This work is free. You can redistribute it and/or modify it under the
 # terms of the Do What The Fuck You Want To Public License, Version 2,
 # as published by Sam Hocevar. See the LICENSE file for more details.
 
-CFLAGS = /O2 /GS- /DNDEBUG /DWIN32 /D_CRT_SECURE_NO_WARNINGS /W3
+CFLAGS = /nologo /O2 /GS- /DNDEBUG /DWIN32 /D_CRT_SECURE_NO_WARNINGS /W3
 
 LTM_LIBNAME = libtommath/tommath.lib
 
@@ -150,6 +150,7 @@ libtomcrypt/src/math/multi.obj \
 libtomcrypt/src/math/rand_prime.obj \
 libtomcrypt/src/misc/base64/base64_decode.obj \
 libtomcrypt/src/misc/base64/base64_encode.obj \
+libtomcrypt/src/misc/compare_testvector.obj \
 libtomcrypt/src/misc/crypt/crypt_argchk.obj \
 libtomcrypt/src/misc/crypt/crypt_hash_descriptor.obj \
 libtomcrypt/src/misc/crypt/crypt_hash_is_valid.obj \
@@ -158,14 +159,13 @@ libtomcrypt/src/misc/crypt/crypt_prng_descriptor.obj \
 libtomcrypt/src/misc/crypt/crypt_prng_is_valid.obj \
 libtomcrypt/src/misc/crypt/crypt_register_hash.obj \
 libtomcrypt/src/misc/crypt/crypt_register_prng.obj \
-libtomcrypt/src/misc/compare_testvector.obj \
 libtomcrypt/src/misc/error_to_string.obj \
 libtomcrypt/src/misc/mem_neq.obj \
 libtomcrypt/src/misc/pk_get_oid.obj \
 libtomcrypt/src/misc/zeromem.obj \
 libtomcrypt/src/pk/asn1/der/bit/der_decode_bit_string.obj \
-libtomcrypt/src/pk/asn1/der/bit/der_encode_bit_string.obj \
 libtomcrypt/src/pk/asn1/der/bit/der_decode_raw_bit_string.obj \
+libtomcrypt/src/pk/asn1/der/bit/der_encode_bit_string.obj \
 libtomcrypt/src/pk/asn1/der/bit/der_encode_raw_bit_string.obj \
 libtomcrypt/src/pk/asn1/der/bit/der_length_bit_string.obj \
 libtomcrypt/src/pk/asn1/der/boolean/der_decode_boolean.obj \
@@ -230,7 +230,7 @@ libtomcrypt/src/pk/rsa/rsa_make_key.obj \
 libtomcrypt/src/pk/rsa/rsa_sign_hash.obj \
 libtomcrypt/src/pk/rsa/rsa_verify_hash.obj \
 libtomcrypt/src/prngs/rng_get_bytes.obj \
-libtomcrypt/src/prngs/sprng.obj \
+libtomcrypt/src/prngs/sprng.obj
 
 LTC_HEADERS = \
 libtomcrypt/src/headers/tomcrypt_cfg.h \
@@ -255,7 +255,7 @@ default: libtommath libtomcrypt
 	$(CC) $(CFLAGS) /Ilibtommath /Folibtommath/ /wd4146 /c $<
 
 $(LTM_LIBNAME): $(LTM_OBJECTS)
-	lib /out:$@ $**
+	lib /nologo /out:$@ $**
 
 libtommath: $(LTM_LIBNAME)
 
@@ -340,7 +340,7 @@ libtomcrypt/src/math/ltm_desc.obj: libtomcrypt/src/math/ltm_desc.c
 	$(CC) $(LTC_CFLAGS) /c $<
 
 $(LTC_LIBNAME): $(LTC_OBJECTS)
-	lib /out:$@ $**
+	lib /nologo /out:$@ $**
 
 libtomcrypt: $(LTC_LIBNAME)
 

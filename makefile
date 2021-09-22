@@ -1,4 +1,4 @@
-# Copyright (C) 2015-2018 Theo Niessink <theo@taletn.com>
+# Copyright (C) 2015-2021 Theo Niessink <theo@taletn.com>
 # This work is free. You can redistribute it and/or modify it under the
 # terms of the Do What The Fuck You Want To Public License, Version 2,
 # as published by Sam Hocevar. See the LICENSE file for more details.
@@ -146,6 +146,7 @@ libtomcrypt/src/math/multi.o \
 libtomcrypt/src/math/rand_prime.o \
 libtomcrypt/src/misc/base64/base64_decode.o \
 libtomcrypt/src/misc/base64/base64_encode.o \
+libtomcrypt/src/misc/compare_testvector.o \
 libtomcrypt/src/misc/crypt/crypt_argchk.o \
 libtomcrypt/src/misc/crypt/crypt_hash_descriptor.o \
 libtomcrypt/src/misc/crypt/crypt_hash_is_valid.o \
@@ -154,14 +155,13 @@ libtomcrypt/src/misc/crypt/crypt_prng_descriptor.o \
 libtomcrypt/src/misc/crypt/crypt_prng_is_valid.o \
 libtomcrypt/src/misc/crypt/crypt_register_hash.o \
 libtomcrypt/src/misc/crypt/crypt_register_prng.o \
-libtomcrypt/src/misc/compare_testvector.o \
 libtomcrypt/src/misc/error_to_string.o \
 libtomcrypt/src/misc/mem_neq.o \
 libtomcrypt/src/misc/pk_get_oid.o \
 libtomcrypt/src/misc/zeromem.o \
 libtomcrypt/src/pk/asn1/der/bit/der_decode_bit_string.o \
-libtomcrypt/src/pk/asn1/der/bit/der_encode_bit_string.o \
 libtomcrypt/src/pk/asn1/der/bit/der_decode_raw_bit_string.o \
+libtomcrypt/src/pk/asn1/der/bit/der_encode_bit_string.o \
 libtomcrypt/src/pk/asn1/der/bit/der_encode_raw_bit_string.o \
 libtomcrypt/src/pk/asn1/der/bit/der_length_bit_string.o \
 libtomcrypt/src/pk/asn1/der/boolean/der_decode_boolean.o \
@@ -256,10 +256,6 @@ LTC_CFLAGS = $(CFLAGS) -Ilibtomcrypt/src/headers -Ilibtommath -DLTC_SOURCE -DLTM
 
 libtomcrypt/%.o: libtomcrypt/%.c
 	$(CC) $(LTC_CFLAGS) -c $<
-
-#ciphers come in two flavours... enc+dec and enc
-libtomcrypt/src/ciphers/aes/aes_enc.o: libtomcrypt/src/ciphers/aes/aes.c libtomcrypt/src/ciphers/aes/aes_tab.c
-	$(CC) $(LTC_CFLAGS) -DENCRYPT_ONLY -c libtomcrypt/src/ciphers/aes/aes.c
 
 libtomcrypt: $(LTC_OBJECTS)
 
