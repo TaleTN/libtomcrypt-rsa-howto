@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 	FILE* f = fopen(public_key, "rb");
 	if (!f) return error("File not found");
 	unsigned char buf[400]; // 2048 bits
-	int len = fread(buf, 1, sizeof(buf), f);
+	int len = (int)fread(buf, 1, sizeof(buf), f);
 	fclose(f);
 	if (!len) return error("Read error");
 
