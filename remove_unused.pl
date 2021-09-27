@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# Copyright (C) 2015 Theo Niessink <theo@taletn.com>
+# Copyright (C) 2015-2021 Theo Niessink <theo@taletn.com>
 # This work is free. You can redistribute it and/or modify it under the
 # terms of the Do What The Fuck You Want To Public License, Version 2,
 # as published by Sam Hocevar. See the LICENSE file for more details.
@@ -36,6 +36,9 @@ while(<FILE>) {
 close(FILE);
 my @required = keys %required;
 undef %required;
+
+push(@required, qw(libtommath/changes.txt libtommath/LICENSE));
+push(@required, qw(libtomcrypt/changes libtomcrypt/LICENSE));
 
 my @files = ();
 my @dirs = ();
