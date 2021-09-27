@@ -259,85 +259,85 @@ $(LTM_LIBNAME): $(LTM_OBJECTS)
 
 libtommath: $(LTM_LIBNAME)
 
-LTC_CFLAGS = $(CFLAGS) /Ilibtomcrypt/src/headers /Ilibtommath /DLTC_SOURCE /DLTM_DESC /Fo$@
+LTC_CFLAGS = $(CFLAGS) /Ilibtomcrypt/src/headers /Ilibtommath /DLTC_SOURCE /DLTM_DESC
 
-{libtomcrypt/src/hashes}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/hashes}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/hashes/ /c $<
 
-{libtomcrypt/src/hashes/sha2}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/hashes/sha2}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/hashes/sha2/ /c $<
 
-{libtomcrypt/src/math}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/math}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/math/ /c $<
 
 libtomcrypt/src/math/ltm_desc.obj: libtomcrypt/src/math/ltm_desc.c
-	$(CC) $(LTC_CFLAGS) /wd4996 /c $**
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/math/ /wd4996 /c $**
 
-{libtomcrypt/src/misc}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/misc}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/misc/ /c $<
 
-{libtomcrypt/src/misc/base64}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/misc/base64}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/misc/base64/ /c $<
 
-{libtomcrypt/src/misc/crypt}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/misc/crypt}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/misc/crypt/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/bit}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/bit}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/bit/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/boolean}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/boolean}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/boolean/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/choice}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/choice}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/choice/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/generalizedtime}.c.obj:
-       $(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/generalizedtime}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/generalizedtime/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/ia5}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/ia5}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/ia5/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/integer}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/integer}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/integer/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/object_identifier}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/object_identifier}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/object_identifier/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/octet}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/octet}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/octet/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/printable_string}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/printable_string}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/printable_string/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/sequence}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/sequence}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/sequence/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/set}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/set}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/set/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/short_integer}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/short_integer}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/short_integer/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/teletex_string}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/teletex_string}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/teletex_string/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/utctime}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/utctime}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/utctime/ /c $<
 
-{libtomcrypt/src/pk/asn1/der/utf8}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/asn1/der/utf8}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/utf8/ /c $<
 
-{libtomcrypt/src/pk/ecc}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/ecc}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/ecc/ /c $<
 
-{libtomcrypt/src/pk/pkcs1}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/pkcs1}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/pkcs1/ /c $<
 
-{libtomcrypt/src/pk/rsa}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/pk/rsa}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/rsa/ /c $<
 
-{libtomcrypt/src/prngs}.c.obj:
-	$(CC) $(LTC_CFLAGS) /c $<
+{libtomcrypt/src/prngs}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/prngs/ /c $<
 
 $(LTC_LIBNAME): $(LTC_OBJECTS)
 	lib /nologo /out:$@ $**
