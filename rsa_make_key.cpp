@@ -14,6 +14,9 @@ int main(int argc, char** argv)
 	// Usage: rsa_make_key <private key file> <public key file>
 	const char* private_key = ARGV(1);
 	const char* public_key = ARGV(2);
+	
+	// otherwise we get an error error: 'ltm_desc' undeclared
+	extern const ltc_math_descriptor ltm_desc;
 
 	ltc_mp = ltm_desc;
 
