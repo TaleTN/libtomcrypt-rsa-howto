@@ -1,4 +1,4 @@
-/* Copyright (C) 2015-2018 Theo Niessink <theo@taletn.com>
+/* Copyright (C) 2015-2023 Theo Niessink <theo@taletn.com>
  * This work is free. You can redistribute it and/or modify it under the
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See the LICENSE file for more details.
@@ -44,7 +44,7 @@ int main(int argc, char** argv)
 	// Decode signature.
 	unsigned char sig[MAX_RSA_SIZE / 8];
 	unsigned long siglen = sizeof(sig);
-	err = base64_decode(buf, buflen, sig, &siglen);
+	err = base64_decode((const char*)buf, buflen, sig, &siglen);
 	if (err != CRYPT_OK) return error(err, &key);
 
 	// Register hash algorithm.
