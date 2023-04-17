@@ -196,7 +196,6 @@ libtomcrypt/src/misc/crypt/crypt_register_hash.obj \
 libtomcrypt/src/misc/crypt/crypt_register_prng.obj \
 libtomcrypt/src/misc/error_to_string.obj \
 libtomcrypt/src/misc/mem_neq.obj \
-libtomcrypt/src/misc/pk_get_oid.obj \
 libtomcrypt/src/misc/zeromem.obj \
 libtomcrypt/src/pk/asn1/der/bit/der_decode_bit_string.obj \
 libtomcrypt/src/pk/asn1/der/bit/der_decode_raw_bit_string.obj \
@@ -207,6 +206,16 @@ libtomcrypt/src/pk/asn1/der/boolean/der_decode_boolean.obj \
 libtomcrypt/src/pk/asn1/der/boolean/der_encode_boolean.obj \
 libtomcrypt/src/pk/asn1/der/boolean/der_length_boolean.obj \
 libtomcrypt/src/pk/asn1/der/choice/der_decode_choice.obj \
+libtomcrypt/src/pk/asn1/der/custom_type/der_decode_custom_type.obj \
+libtomcrypt/src/pk/asn1/der/custom_type/der_encode_custom_type.obj \
+libtomcrypt/src/pk/asn1/der/custom_type/der_length_custom_type.obj \
+libtomcrypt/src/pk/asn1/der/general/der_asn1_maps.obj \
+libtomcrypt/src/pk/asn1/der/general/der_decode_asn1_identifier.obj \
+libtomcrypt/src/pk/asn1/der/general/der_decode_asn1_length.obj \
+libtomcrypt/src/pk/asn1/der/general/der_encode_asn1_identifier.obj \
+libtomcrypt/src/pk/asn1/der/general/der_encode_asn1_length.obj \
+libtomcrypt/src/pk/asn1/der/general/der_length_asn1_identifier.obj \
+libtomcrypt/src/pk/asn1/der/general/der_length_asn1_length.obj \
 libtomcrypt/src/pk/asn1/der/generalizedtime/der_decode_generalizedtime.obj \
 libtomcrypt/src/pk/asn1/der/generalizedtime/der_encode_generalizedtime.obj \
 libtomcrypt/src/pk/asn1/der/generalizedtime/der_length_generalizedtime.obj \
@@ -227,10 +236,8 @@ libtomcrypt/src/pk/asn1/der/printable_string/der_encode_printable_string.obj \
 libtomcrypt/src/pk/asn1/der/printable_string/der_length_printable_string.obj \
 libtomcrypt/src/pk/asn1/der/sequence/der_decode_sequence_ex.obj \
 libtomcrypt/src/pk/asn1/der/sequence/der_decode_sequence_multi.obj \
-libtomcrypt/src/pk/asn1/der/sequence/der_decode_subject_public_key_info.obj \
 libtomcrypt/src/pk/asn1/der/sequence/der_encode_sequence_ex.obj \
 libtomcrypt/src/pk/asn1/der/sequence/der_encode_sequence_multi.obj \
-libtomcrypt/src/pk/asn1/der/sequence/der_encode_subject_public_key_info.obj \
 libtomcrypt/src/pk/asn1/der/sequence/der_length_sequence.obj \
 libtomcrypt/src/pk/asn1/der/set/der_encode_set.obj \
 libtomcrypt/src/pk/asn1/der/set/der_encode_setof.obj \
@@ -245,6 +252,12 @@ libtomcrypt/src/pk/asn1/der/utctime/der_length_utctime.obj \
 libtomcrypt/src/pk/asn1/der/utf8/der_decode_utf8_string.obj \
 libtomcrypt/src/pk/asn1/der/utf8/der_encode_utf8_string.obj \
 libtomcrypt/src/pk/asn1/der/utf8/der_length_utf8_string.obj \
+libtomcrypt/src/pk/asn1/oid/pk_get_oid.obj \
+libtomcrypt/src/pk/asn1/oid/pk_oid_cmp.obj \
+libtomcrypt/src/pk/asn1/oid/pk_oid_str.obj \
+libtomcrypt/src/pk/asn1/x509/x509_decode_subject_public_key_info.obj \
+libtomcrypt/src/pk/asn1/x509/x509_encode_subject_public_key_info.obj \
+libtomcrypt/src/pk/ecc/ltc_ecc_is_point_at_infinity.obj \
 libtomcrypt/src/pk/ecc/ltc_ecc_map.obj \
 libtomcrypt/src/pk/ecc/ltc_ecc_mul2add.obj \
 libtomcrypt/src/pk/ecc/ltc_ecc_mulmod.obj \
@@ -259,8 +272,8 @@ libtomcrypt/src/pk/pkcs1/pkcs_1_v1_5_decode.obj \
 libtomcrypt/src/pk/pkcs1/pkcs_1_v1_5_encode.obj \
 libtomcrypt/src/pk/rsa/rsa_export.obj \
 libtomcrypt/src/pk/rsa/rsa_exptmod.obj \
-libtomcrypt/src/pk/rsa/rsa_free.obj \
 libtomcrypt/src/pk/rsa/rsa_import.obj \
+libtomcrypt/src/pk/rsa/rsa_key.obj \
 libtomcrypt/src/pk/rsa/rsa_make_key.obj \
 libtomcrypt/src/pk/rsa/rsa_sign_hash.obj \
 libtomcrypt/src/pk/rsa/rsa_verify_hash.obj \
@@ -280,6 +293,7 @@ libtomcrypt/src/headers/tomcrypt_math.h \
 libtomcrypt/src/headers/tomcrypt_misc.h \
 libtomcrypt/src/headers/tomcrypt.h \
 libtomcrypt/src/headers/tomcrypt_pkcs.h \
+libtomcrypt/src/headers/tomcrypt_private.h \
 libtomcrypt/src/headers/tomcrypt_prng.h \
 libtomcrypt/src/hashes/sha2/sha224.c \
 libtomcrypt/src/hashes/sha2/sha384.c
@@ -326,6 +340,12 @@ libtomcrypt/src/math/ltm_desc.obj: libtomcrypt/src/math/ltm_desc.c
 {libtomcrypt/src/pk/asn1/der/choice}.c.obj::
 	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/choice/ /c $<
 
+{libtomcrypt/src/pk/asn1/der/custom_type}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/custom_type/ /c $<
+
+{libtomcrypt/src/pk/asn1/der/general}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/general/ /c $<
+
 {libtomcrypt/src/pk/asn1/der/generalizedtime}.c.obj::
 	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/generalizedtime/ /c $<
 
@@ -361,6 +381,12 @@ libtomcrypt/src/math/ltm_desc.obj: libtomcrypt/src/math/ltm_desc.c
 
 {libtomcrypt/src/pk/asn1/der/utf8}.c.obj::
 	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/der/utf8/ /c $<
+
+{libtomcrypt/src/pk/asn1/oid}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/oid/ /c $<
+
+{libtomcrypt/src/pk/asn1/x509}.c.obj::
+	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/asn1/x509/ /c $<
 
 {libtomcrypt/src/pk/ecc}.c.obj::
 	$(CC) $(LTC_CFLAGS) /Folibtomcrypt/src/pk/ecc/ /c $<

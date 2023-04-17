@@ -192,7 +192,6 @@ libtomcrypt/src/misc/crypt/crypt_register_hash.o \
 libtomcrypt/src/misc/crypt/crypt_register_prng.o \
 libtomcrypt/src/misc/error_to_string.o \
 libtomcrypt/src/misc/mem_neq.o \
-libtomcrypt/src/misc/pk_get_oid.o \
 libtomcrypt/src/misc/zeromem.o \
 libtomcrypt/src/pk/asn1/der/bit/der_decode_bit_string.o \
 libtomcrypt/src/pk/asn1/der/bit/der_decode_raw_bit_string.o \
@@ -203,6 +202,16 @@ libtomcrypt/src/pk/asn1/der/boolean/der_decode_boolean.o \
 libtomcrypt/src/pk/asn1/der/boolean/der_encode_boolean.o \
 libtomcrypt/src/pk/asn1/der/boolean/der_length_boolean.o \
 libtomcrypt/src/pk/asn1/der/choice/der_decode_choice.o \
+libtomcrypt/src/pk/asn1/der/custom_type/der_decode_custom_type.o \
+libtomcrypt/src/pk/asn1/der/custom_type/der_encode_custom_type.o \
+libtomcrypt/src/pk/asn1/der/custom_type/der_length_custom_type.o \
+libtomcrypt/src/pk/asn1/der/general/der_asn1_maps.o \
+libtomcrypt/src/pk/asn1/der/general/der_decode_asn1_identifier.o \
+libtomcrypt/src/pk/asn1/der/general/der_decode_asn1_length.o \
+libtomcrypt/src/pk/asn1/der/general/der_encode_asn1_identifier.o \
+libtomcrypt/src/pk/asn1/der/general/der_encode_asn1_length.o \
+libtomcrypt/src/pk/asn1/der/general/der_length_asn1_identifier.o \
+libtomcrypt/src/pk/asn1/der/general/der_length_asn1_length.o \
 libtomcrypt/src/pk/asn1/der/generalizedtime/der_decode_generalizedtime.o \
 libtomcrypt/src/pk/asn1/der/generalizedtime/der_encode_generalizedtime.o \
 libtomcrypt/src/pk/asn1/der/generalizedtime/der_length_generalizedtime.o \
@@ -223,10 +232,8 @@ libtomcrypt/src/pk/asn1/der/printable_string/der_encode_printable_string.o \
 libtomcrypt/src/pk/asn1/der/printable_string/der_length_printable_string.o \
 libtomcrypt/src/pk/asn1/der/sequence/der_decode_sequence_ex.o \
 libtomcrypt/src/pk/asn1/der/sequence/der_decode_sequence_multi.o \
-libtomcrypt/src/pk/asn1/der/sequence/der_decode_subject_public_key_info.o \
 libtomcrypt/src/pk/asn1/der/sequence/der_encode_sequence_ex.o \
 libtomcrypt/src/pk/asn1/der/sequence/der_encode_sequence_multi.o \
-libtomcrypt/src/pk/asn1/der/sequence/der_encode_subject_public_key_info.o \
 libtomcrypt/src/pk/asn1/der/sequence/der_length_sequence.o \
 libtomcrypt/src/pk/asn1/der/set/der_encode_set.o \
 libtomcrypt/src/pk/asn1/der/set/der_encode_setof.o \
@@ -241,6 +248,12 @@ libtomcrypt/src/pk/asn1/der/utctime/der_length_utctime.o \
 libtomcrypt/src/pk/asn1/der/utf8/der_decode_utf8_string.o \
 libtomcrypt/src/pk/asn1/der/utf8/der_encode_utf8_string.o \
 libtomcrypt/src/pk/asn1/der/utf8/der_length_utf8_string.o \
+libtomcrypt/src/pk/asn1/oid/pk_get_oid.o \
+libtomcrypt/src/pk/asn1/oid/pk_oid_cmp.o \
+libtomcrypt/src/pk/asn1/oid/pk_oid_str.o \
+libtomcrypt/src/pk/asn1/x509/x509_decode_subject_public_key_info.o \
+libtomcrypt/src/pk/asn1/x509/x509_encode_subject_public_key_info.o \
+libtomcrypt/src/pk/ecc/ltc_ecc_is_point_at_infinity.o \
 libtomcrypt/src/pk/ecc/ltc_ecc_map.o \
 libtomcrypt/src/pk/ecc/ltc_ecc_mul2add.o \
 libtomcrypt/src/pk/ecc/ltc_ecc_mulmod.o \
@@ -255,8 +268,8 @@ libtomcrypt/src/pk/pkcs1/pkcs_1_v1_5_decode.o \
 libtomcrypt/src/pk/pkcs1/pkcs_1_v1_5_encode.o \
 libtomcrypt/src/pk/rsa/rsa_export.o \
 libtomcrypt/src/pk/rsa/rsa_exptmod.o \
-libtomcrypt/src/pk/rsa/rsa_free.o \
 libtomcrypt/src/pk/rsa/rsa_import.o \
+libtomcrypt/src/pk/rsa/rsa_key.o \
 libtomcrypt/src/pk/rsa/rsa_make_key.o \
 libtomcrypt/src/pk/rsa/rsa_sign_hash.o \
 libtomcrypt/src/pk/rsa/rsa_verify_hash.o \
@@ -276,6 +289,7 @@ libtomcrypt/src/headers/tomcrypt_math.h \
 libtomcrypt/src/headers/tomcrypt_misc.h \
 libtomcrypt/src/headers/tomcrypt.h \
 libtomcrypt/src/headers/tomcrypt_pkcs.h \
+libtomcrypt/src/headers/tomcrypt_private.h \
 libtomcrypt/src/headers/tomcrypt_prng.h \
 libtomcrypt/src/hashes/sha2/sha224.c \
 libtomcrypt/src/hashes/sha2/sha384.c
